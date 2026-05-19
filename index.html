@@ -4,32 +4,14 @@
   <title>My First Project</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
   <h1>Hello, I started.</h1>
-
   <p id="message">
     This is Day 4 of my consistency streak.
   </p>
-
   <button onclick="changeText()">
     Click Me
   </button>
-
-  <script>
-    function changeText() {
-      var message = document.getElementById("message");
-      switch(message.innerText){
-        case "This is Day 4 of my consistency streak.":
-          message.innerText = "Button clicked. I'm still showing up.";
-          break;
-        default:
-          message.innerText = "Button clicked. I'm still showing up.";
-      }
-      message.style.color = "#" + Math.floor(Math.random()*16777215).toString(16);
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
