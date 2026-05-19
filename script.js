@@ -6,7 +6,7 @@ button.onmouseover = function() {
 };
 
 button.onmouseout = function() {
-  button.style.backgroundColor = "white";
+  button.style.backgroundColor = "black";
 };
 
 function changeText() {
