@@ -15,8 +15,6 @@ function changeText() {
   const name = document.getElementById("nameInput").value;
   if(value === "")
     name = "BlahBlah";
-  else
-    name = document.getElementById("nameInput").value;
   message.innerText = "Button clicked. "+ name +", you're still showing up.";
   message.style.color = currentColor;
   currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
