@@ -22,5 +22,7 @@ function changeText() {
   message.innerText = "Button clicked. "+ name.value +", you're still showing up.";
   message.style.color = currentColor;
   currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  button.style.backgroundColor = currentColor;
+  name.style.backgroundColor = currentColor;
   name.value = "";
 }
