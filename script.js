@@ -13,7 +13,7 @@ button.onmouseout = function() {
 function changeText() {
   const message = document.getElementById("message");
   const name = document.getElementById("nameInput").value;
-  if(value === "")
+  if(name === "")
     name = "BlahBlah";
   message.innerText = "Button clicked. "+ name +", you're still showing up.";
   message.style.color = currentColor;
