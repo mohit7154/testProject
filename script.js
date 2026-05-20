@@ -12,8 +12,8 @@ button.onmouseout = function() {
 
 function changeText() {
   const message = document.getElementById("message");
-  const name;
-  if(document.getElementById("nameInput").value == "" || !document.getElementById("nameInput"))
+  const name = document.getElementById("nameInput").value;
+  if(value === "")
     name = "BlahBlah";
   else
     name = document.getElementById("nameInput").value;
