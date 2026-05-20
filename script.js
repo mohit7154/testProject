@@ -6,7 +6,7 @@ const name = document.getElementById("nameInput");
 button.onmouseover = function() {
   button.style.backgroundColor = currentColor;
   name.style.backgroundColor = currentColor;
-  name.style.transform = "scale(2) rotate(10deg)";
+  name.style.transform = "scale(2)";
 };
 
 button.onmouseout = function() {
