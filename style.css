@@ -18,9 +18,9 @@ input {
   padding: 10px;
   font-size: 10px;
   color: white;
-  margin-right: 10px;
   border-radius: 999px;
   border: none;
+  appearance: none;
 }
 
 button {
