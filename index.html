@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>My First Project</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <h1>Hello, I started.</h1>
   <p id="message">
     This is Day 5 of my consistency streak.
   </p>
-  <input type="text" id="nameInput" placeholder="Enter your name"/>
+  <input type="text" id="nameInput" placeholder="Enter your name" />
   <p></p>
-  <div><button id = "myButton" onclick="changeText()">
-    Click Me
-  </button></div>
+  <div><button id="myButton" onclick="changeText()">
+      Click Me
+    </button></div>
+  <div style="margin-top: 30px;">
+
+    <input type="text" id="taskInput" placeholder="Enter a task" />
+
+    <button onclick="addTask()">
+      Add Task
+    </button>
+
+  </div>
+
+  <ul id="taskList"></ul>
   <script src="script.js"></script>
 </body>
+
 </html>
