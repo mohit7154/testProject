@@ -24,6 +24,18 @@ input {
   appearance: none;
 }
 
+ul {
+  list-style-position: inside;
+  padding: 0;
+  display: inline-block;
+  text-align: left;
+}
+
+li {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
 button {
   padding: 10px 20px;
   font-size: 16px;
