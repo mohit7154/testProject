@@ -45,8 +45,14 @@ function renderTasks() { 
 
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
-
   for (let i = 0; i < tasks.length; i++) {
     taskList.innerHTML += `<li>${tasks[i]}</li>`;
+  }
+}
+function renderTasks() {
+  const taskList = document.getElementById("taskList");
+  taskList.innerHTML = "";
+  for (let i = 0; i < tasks.length; i++) {
+    taskList.innerHTML += `<li>${tasks[i]}<button onclick="deleteTask(${i})">Delete</button></li>`;
   }
 }
