@@ -56,3 +56,7 @@ function renderTasks() {
     taskList.innerHTML += `<li>${tasks[i]}<button onclick="deleteTask(${i})">Delete</button></li>`;
   }
 }
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  renderTasks();
+}
