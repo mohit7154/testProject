@@ -8,6 +8,9 @@ button.onmouseover = function () {
   name.style.backgroundColor = currentColor;
   name.style.transform = "scale(2)";
 };
+{
+  
+}
 
 button.onmouseout = function () {
   button.style.backgroundColor = null;
