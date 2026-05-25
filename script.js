@@ -25,7 +25,7 @@ function addTask() {
     return;
   }
 
-  tasks.push(task);
+  tasks.push({text: task, completed: false});
   renderTasks();
   taskInput.value = "";
 }
