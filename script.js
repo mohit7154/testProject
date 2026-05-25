@@ -65,9 +65,7 @@ function renderTasks() {
       ${tasks[i].text}
     </span>
 
-    <button onclick="deleteTask(${i})">
-      Delete
-    </button>
+    <button onclick="deleteTask(${i})">x</button>
 
   </li>
 `;
