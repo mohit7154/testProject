@@ -61,19 +61,12 @@ function renderTasks() {
   >
 
     <span onclick="toggleTask(${i})"
-       style="cursor:pointer;background-color: crimson;
-              color: white;
-              border: none;
-              padding: 4px 8px;
-              font-size: 12px;
-              border-radius: 999px;
-              cursor: pointer;
-}" >
+       style="cursor:pointer;" >
       ${tasks[i].text}
     </span>
 
-    <button onclick="deleteTask(${i})">x</button>
-
+    <button style = "background-color: crimson;color: white;border: none;padding: 4px 8px;font-size: 12px;border-radius: 999px;cursor: pointer;" 
+    onclick="deleteTask(${i})">x</button>
   </li>
 `;
   }
