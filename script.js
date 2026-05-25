@@ -41,22 +41,20 @@ function changeText() {
   name.value = "";
 }
 
-function renderTasks() { 
-
-  const taskList = document.getElementById("taskList");
-  taskList.innerHTML = "";
-  for (let i = 0; i < tasks.length; i++) {
-    taskList.innerHTML += `<li>${tasks[i]}</li>`;
-  }
-}
 function renderTasks() {
-  const taskList = document.getElementById("taskList");
+
+  const taskList =
+    document.getElementById("taskList");
+
   taskList.innerHTML = "";
+
   for (let i = 0; i < tasks.length; i++) {
-    taskList.innerHTML += `<li>${tasks[i]}<button onclick="deleteTask(${i})">Delete</button></li>`;
+
+    taskList.innerHTML +=
+      `<  li style = "text - decoration:${tasks[i].completed ? "line-through" : "none"};
+          opacity: ${tasks[i].completed ? "0.5" : "1"};">
+      <span onclick="toggleTask(${i})" style="cursor:pointer;">${tasks[i].text}</span>
+      <button style = " background-color: crimson; color: white; border: none; padding: 6px 12px; border-radius: 999px; cursor: pointer;" onclick="deleteTask(${i})">Delete</button>
+    </li >;`
   }
-}
-function deleteTask(index) {
-  tasks.splice(index, 1);
-  renderTasks();
 }
