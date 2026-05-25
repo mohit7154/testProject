@@ -55,7 +55,7 @@ function renderTasks() {
           opacity: ${tasks[i].completed ? "0.5" : "1"};">
       <span onclick="toggleTask(${i})" style="cursor:pointer;">${tasks[i].text}</span>
       <button style = " background-color: crimson; color: white; border: none; padding: 4px 8px; border-radius: 999px; cursor: pointer;" onclick="deleteTask(${i})">x</button>
-    </li >;`
+    </li >`;
   }
 }
 
