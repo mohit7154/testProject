@@ -61,7 +61,14 @@ function renderTasks() {
   >
 
     <span onclick="toggleTask(${i})"
-      style="cursor:pointer;">
+       style="cursor:pointer;background-color: crimson;
+              color: white;
+              border: none;
+              padding: 4px 8px;
+              font-size: 12px;
+              border-radius: 999px;
+              cursor: pointer;
+}" >
       ${tasks[i].text}
     </span>
 
@@ -70,6 +77,12 @@ function renderTasks() {
   </li>
 `;
   }
+}
+
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  renderTasks();
 }
 
 function toggleTask(index) {
