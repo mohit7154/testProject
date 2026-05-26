@@ -1,7 +1,8 @@
-var currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-var currentFilter = "all";
+const currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+const currentFilter = "all";
 const button = document.getElementById("myButton");
 const name = document.getElementById("nameInput");
+const tasks = [];
 
 
 button.onmouseover = function () {
@@ -15,7 +16,6 @@ button.onmouseout = function () {
   name.style.backgroundColor = null;
   name.style.transform = null;
 };
-const tasks = [];
 
 function addTask() {
 
@@ -30,6 +30,7 @@ function addTask() {
   renderTasks();
   taskInput.value = "";
 }
+
 function changeText() {
   const message = document.getElementById("message");
   if ((name.value + '').trim() == "")
@@ -44,10 +45,9 @@ function changeText() {
 
 function renderTasks() {
 
-  const taskList =
-    document.getElementById("taskList");
-
+  const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
+  
   var filteredTasks = tasks;
   if (currentFilter === "completed") {
     filteredTasks = tasks.filter(task => task.completed);
@@ -57,26 +57,25 @@ function renderTasks() {
 
   for (let i = 0; i < filteredTasks.length; i++) {
     var originalIndex = tasks.indexOf(filteredTasks[i]);
-    taskList.innerHTML += `
-  <li
-    style="
+    taskList.innerHTML += 
+    `<li style = "
       text-decoration:
-        ${filteredTasks[originalIndex].completed ? "line-through" : "none"};
-
+        ${filteredTasks[i].completed ? "line-through" : "none"};
       opacity:
-        ${filteredTasks[originalIndex].completed ? "0.5" : "1"};
-    "
-  >
-
-    <span onclick="toggleTask(${originalIndex})"
-       style="cursor:pointer;" >
-      ${filteredTasks[originalIndex].text}
-    </span>
-
-    <button style = "background-color: crimson;color: white;border: none;padding: 4px 8px;font-size: 12px;border-radius: 999px;cursor: pointer;" 
-    onclick="deleteTask(${originalIndex})">x</button>
-  </li>
-`;
+        ${filteredTasks[i].completed ? "0.5" : "1"};">
+      <span onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">
+        ${filteredTasks[i].text}
+      </span>
+    <button style = "
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 999px;
+      cursor: pointer;" 
+      onclick="deleteTask(${originalIndex})">x</button>
+    </li>`;
   }
 }
 
