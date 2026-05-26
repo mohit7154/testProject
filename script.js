@@ -68,7 +68,7 @@ function renderTasks() {
     "
   >
 
-    <span onclick="toggleTask(${i})"
+    <span onclick="toggleTask(${originalIndex})"
        style="cursor:pointer;" >
       ${filteredTasks[originalIndex].text}
     </span>
