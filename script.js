@@ -47,7 +47,7 @@ function renderTasks() {
 
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
-  alert(currentFilter);
+  console.log(currentFilter);
   
   var filteredTasks = tasks;
   if (currentFilter === "completed") {
@@ -56,7 +56,7 @@ function renderTasks() {
     filteredTasks = tasks.filter(task => !task.completed);
   }
 
-  alert(filteredTasks);
+  console.log(filteredTasks);
 
   for (let i = 0; i < filteredTasks.length; i++) {
     var originalIndex = tasks.indexOf(filteredTasks[i]);
