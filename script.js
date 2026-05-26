@@ -47,7 +47,6 @@ function renderTasks() {
 
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
-  console.log(currentFilter);
   
   var filteredTasks = tasks;
   if (currentFilter === "completed") {
@@ -55,8 +54,6 @@ function renderTasks() {
   }else if (currentFilter === "pending") {
     filteredTasks = tasks.filter(task => !task.completed);
   }
-
-  console.log(filteredTasks);
 
   for (let i = 0; i < filteredTasks.length; i++) {
     var originalIndex = tasks.indexOf(filteredTasks[i]);
@@ -67,15 +64,15 @@ function renderTasks() {
       opacity:
         ${filteredTasks[i].completed ? "0.5" : "1"};">
       <span onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">${filteredTasks[i].text}</span>
-    <button style = "
-      background-color: crimson;
-      color: white;
-      border: none;
-      padding: 4px 8px;
-      font-size: 12px;
-      border-radius: 999px;
-      cursor: pointer;"
-      onclick="deleteTask(${originalIndex})">x</button>
+      <button style = "
+        background-color: crimson;
+        color: white;
+        border: none;
+        padding: 4px 8px;
+        font-size: 12px;
+        border-radius: 999px;
+        cursor: pointer;"
+        onclick="deleteTask(${originalIndex})">x</button>
     </li>`;
   }
 }
