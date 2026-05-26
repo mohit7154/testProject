@@ -17,9 +17,7 @@
       Click Me
     </button></div>
   <div style="margin-top: 30px;">
-
     <input type="text" id="taskInput" placeholder="Enter a task" />
-
     <button style="
     background-color: green;
     color: white;
@@ -27,9 +25,12 @@
     padding: 8px 10px;
     border-radius: 999px;
     cursor: pointer;" onclick="addTask()">+</button>
-
   </div>
-
+  <div style="margin-top:20px;">
+    <button onclick="setFilter('all')">All</button>
+    <button onclick="setFilter('completed')">Completed</button>
+    <button onclick="setFilter('pending')">Pending</button>
+  </div>
   <ul id="taskList"></ul>
   <script src="script.js"></script>
 </body>
