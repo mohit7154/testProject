@@ -1,4 +1,5 @@
 var currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+var currentFilter = "all";
 const button = document.getElementById("myButton");
 const name = document.getElementById("nameInput");
 
@@ -47,31 +48,42 @@ function renderTasks() {
     document.getElementById("taskList");
 
   taskList.innerHTML = "";
+  var filteredTasks = tasks;
+  if (currentFilter === "completed") {
+    filteredTasks = tasks.filter(task => task.completed);
+  }else if (currentFilter === "pending") {
+    filteredTasks = tasks.filter(task => !task.completed);
+  }
 
-  for (let i = 0; i < tasks.length; i++) {
+  for (let i = 0; i < filteredTasks.length; i++) {
+    var originalIndex = tasks.indexOf(filteredTasks[i]);
     taskList.innerHTML += `
   <li
     style="
       text-decoration:
-        ${tasks[i].completed ? "line-through" : "none"};
+        ${filteredTasks[originalIndex].completed ? "line-through" : "none"};
 
       opacity:
-        ${tasks[i].completed ? "0.5" : "1"};
+        ${filteredTasks[originalIndex].completed ? "0.5" : "1"};
     "
   >
 
     <span onclick="toggleTask(${i})"
        style="cursor:pointer;" >
-      ${tasks[i].text}
+      ${filteredTasks[originalIndex].text}
     </span>
 
     <button style = "background-color: crimson;color: white;border: none;padding: 4px 8px;font-size: 12px;border-radius: 999px;cursor: pointer;" 
-    onclick="deleteTask(${i})">x</button>
+    onclick="deleteTask(${originalIndex})">x</button>
   </li>
 `;
   }
 }
 
+function setFilter(filter) {
+  currentFilter = filter;
+  renderTasks();
+}
 
 function deleteTask(index) {
   tasks.splice(index, 1);
