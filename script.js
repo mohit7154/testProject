@@ -1,5 +1,5 @@
-const currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-const currentFilter = "all";
+var currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+var currentFilter = "all";
 const button = document.getElementById("myButton");
 const name = document.getElementById("nameInput");
 const tasks = [];
