@@ -106,4 +106,5 @@ function editTask(index) {
   taskInput.value = tasks[index].text;
   isEditing = true;
   editingIndex = index;
+  renderTasks();
 }
