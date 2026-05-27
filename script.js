@@ -3,6 +3,8 @@ var currentFilter = "all";
 const button = document.getElementById("myButton");
 const name = document.getElementById("nameInput");
 const tasks = [];
+var isEditing = false;
+var editingIndex = null;
 
 
 button.onmouseover = function () {
@@ -26,7 +28,13 @@ function addTask() {
     return;
   }
 
-  tasks.push({text: task, completed: false});
+  if (isEditing) {
+    tasks[editingIndex].text = task;
+    isEditing = false;
+    editingIndex = null;
+  } else {
+    tasks.push({text: task, completed: false});
+  }
   renderTasks();
   taskInput.value = "";
 }
@@ -64,6 +72,7 @@ function renderTasks() {
       opacity:
         ${filteredTasks[i].completed ? "0.5" : "1"};">
       <span onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">${filteredTasks[i].text}</span>
+      <button class="edit-btn" onclick="editTask(${originalIndex})">Edit</button>
       <button style = "
         background-color: crimson;
         color: white;
@@ -90,4 +99,11 @@ function deleteTask(index) {
 function toggleTask(index) {
   tasks[index].completed = !tasks[index].completed;
   renderTasks();
+}
+
+function editTask(index) {
+  const taskInput = document.getElementById("taskInput");
+  taskInput.value = tasks[index].text;
+  isEditing = true;
+  editingIndex = index;
 }
