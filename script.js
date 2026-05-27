@@ -72,7 +72,7 @@ function renderTasks() {
       opacity:
         ${filteredTasks[i].completed ? "0.5" : "1"};">
       <span onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">${filteredTasks[i].text}</span>
-      <button class="edit-btn" onclick="editTask(${originalIndex})">Edit</button>
+      <button class="edit-btn" style = "background-color:${i == editingIndex ? "orange" : "none"};" onclick="editTask(${originalIndex})">Edit</button>
       <button style = "
         background-color: crimson;
         color: white;
