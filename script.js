@@ -2,9 +2,10 @@ var currentColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
 var currentFilter = "all";
 const button = document.getElementById("myButton");
 const name = document.getElementById("nameInput");
-const tasks = [];
+const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 var isEditing = false;
 var editingIndex = null;
+renderTasks();
 
 
 button.onmouseover = function () {
@@ -33,8 +34,9 @@ function addTask() {
     isEditing = false;
     editingIndex = null;
   } else {
-    tasks.push({text: task, completed: false});
+    tasks.push({ text: task, completed: false });
   }
+  saveTasks();
   renderTasks();
   taskInput.value = "";
 }
@@ -55,18 +57,18 @@ function renderTasks() {
 
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
-  
+
   var filteredTasks = tasks;
   if (currentFilter === "completed") {
     filteredTasks = tasks.filter(task => task.completed);
-  }else if (currentFilter === "pending") {
+  } else if (currentFilter === "pending") {
     filteredTasks = tasks.filter(task => !task.completed);
   }
 
   for (let i = 0; i < filteredTasks.length; i++) {
     var originalIndex = tasks.indexOf(filteredTasks[i]);
-    taskList.innerHTML += 
-    `<li style = "
+    taskList.innerHTML +=
+      `<li style = "
       text-decoration:
         ${filteredTasks[i].completed ? "line-through" : "none"};
       opacity:
@@ -82,7 +84,7 @@ function renderTasks() {
         border-radius: 999px;
         cursor: pointer;"
         onclick="deleteTask(${originalIndex})">x</button>
-    </li>`;
+      </li>`;
   }
 }
 
@@ -93,11 +95,13 @@ function setFilter(filter) {
 
 function deleteTask(index) {
   tasks.splice(index, 1);
+  saveTasks();
   renderTasks();
 }
 
 function toggleTask(index) {
   tasks[index].completed = !tasks[index].completed;
+  saveTasks();
   renderTasks();
 }
 
@@ -106,5 +110,10 @@ function editTask(index) {
   taskInput.value = tasks[index].text;
   isEditing = true;
   editingIndex = index;
+  saveTasks();
   renderTasks();
+}
+
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
