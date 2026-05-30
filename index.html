@@ -12,10 +12,12 @@
     This is Day 5 of my consistency streak.
   </p>
   <input type="text" id="nameInput" placeholder="Enter your name" />
-  <p></p>
-  <div><button id="myButton" onclick="changeText()">
+  <p></p> 
+  <div>
+    <button id="myButton" onclick="changeText()">
       Click Me
-    </button></div>
+    </button>
+  </div>
   <div style="margin-top: 30px;">
     <input type="text" id="taskInput" placeholder="Enter a task" />
     <button style="
@@ -31,6 +33,9 @@
     <button onclick="setFilter('completed')">Completed</button>
     <button onclick="setFilter('pending')">Pending</button>
   </div>
+  <div style="margin-top:20px;">
+  <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
+  </div>    
   <ul id="taskList"></ul>
   <script src="script.js"></script>
 </body>

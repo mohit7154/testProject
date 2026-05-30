@@ -6,7 +6,7 @@ const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 var isEditing = false;
 var editingIndex = null;
 renderTasks();
-
+var searchText = "";
 
 button.onmouseover = function () {
   button.style.backgroundColor = currentColor;
@@ -65,6 +65,13 @@ function renderTasks() {
     filteredTasks = tasks.filter(task => !task.completed);
   }
 
+  filteredTasks = filteredTasks.filter(task => task.text.toLowerCase().includes(searchText));
+
+  if(filteredTasks.length == 0) {
+    taskList.innerHTML = "No tasks found.";
+    return;
+  }
+
   for (let i = 0; i < filteredTasks.length; i++) {
     var originalIndex = tasks.indexOf(filteredTasks[i]);
     taskList.innerHTML +=
@@ -116,4 +123,9 @@ function editTask(index) {
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function updateSearch() {
+  searchText = document.getElementById("searchInput").value.trim().toLowerCase();
+  renderTasks();
 }
