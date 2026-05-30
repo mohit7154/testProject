@@ -5,8 +5,8 @@ const name = document.getElementById("nameInput");
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 var isEditing = false;
 var editingIndex = null;
-renderTasks();
 var searchText = "";
+renderTasks();
 
 button.onmouseover = function () {
   button.style.backgroundColor = currentColor;
