@@ -34,8 +34,14 @@
     <button onclick="setFilter('pending')">Pending</button>
   </div>
   <div style="margin-top:20px;">
-  <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
-  </div>    
+    <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
+    <select id="sortSelect" onchange="updateSort()">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="completed">Completed First</option>
+      <option value="pending">Earliest Pending</option>
+    </select>
+  </div>
   <ul id="taskList"></ul>
   <script src="script.js"></script>
 </body>
