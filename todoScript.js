@@ -85,8 +85,10 @@ function renderTasks() {
         ${filteredTasks[i].completed ? "0.5" : "1"};
       color:
         ${filteredTasks[i].completedAt == newestCompletedTask ? "green" :
-         (filteredTasks[i].createdAt == oldestPendingTask ? "red" : "black")};">
-      <span class="task-text" onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">${filteredTasks[i].text}</span>
+         (filteredTasks[i].createdAt == oldestPendingTask ? "red" : "grey")};
+      max-width: 300px;
+      overflow-wrap: break-word;">
+      <span onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">${filteredTasks[i].text}</span>
       <button class="edit-btn" style = "background-color:${originalIndex == editingIndex ? "orange" : "none"};" onclick="editTask(${originalIndex})">Edit</button>
       <button style = "
         background-color: crimson;

@@ -94,12 +94,6 @@ p {
   margin-top: 20px;
 }
 
-.task-text {
-  display: inline-block;
-  max-width: 300px;
-  overflow-wrap: break-word;
-}
-
 .app-button:hover {
 
   transform:
