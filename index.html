@@ -33,6 +33,12 @@
     <button onclick="setFilter('completed')">Completed</button>
     <button onclick="setFilter('pending')">Pending</button>
   </div>
+  <div id="statsContainer">
+    <p id="totalTasks"></p>
+    <p id="completedTasks"></p>
+    <p id="pendingTasks"></p>
+    <p id="completionRate"></p>
+  </div>
   <div style="margin-top:20px;">
     <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
     <select id="sortSelect" onchange="updateSort()">

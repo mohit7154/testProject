@@ -56,6 +56,11 @@ function changeText() {
 
 function renderTasks() {
 
+  
+  updateStats();
+  
+  var oldestPendingTask = Number.POSITIVE_INFINITY;
+  var newestCompletedTask = Number.NEGATIVE_INFINITY;
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
 
@@ -90,6 +95,14 @@ function renderTasks() {
     return;
   }
 
+  for(let i = 0; i < filteredTasks.length; i++)
+    if(filteredTasks[i].completed && filteredTasks[i].completedAt > newestCompletedTask)
+        newestCompletedTask = filteredTasks[i].completedAt;
+    else if(filteredTasks[i].createdAt < oldestPendingTask) 
+        oldestPendingTask = filteredTasks[i].createdAt;
+  console.log(newestCompletedTask, oldestPendingTask);
+
+
   for (let i = 0; i < filteredTasks.length; i++) {
     var originalIndex = tasks.indexOf(filteredTasks[i]);
     taskList.innerHTML +=
@@ -97,7 +110,10 @@ function renderTasks() {
       text-decoration:
         ${filteredTasks[i].completed ? "line-through" : "none"};
       opacity:
-        ${filteredTasks[i].completed ? "0.5" : "1"};">
+        ${filteredTasks[i].completed ? "0.5" : "1"};
+      color:
+        ${filteredTasks[i].completedAt == newestCompletedTask ? "green" :
+         (filteredTasks[i].createdAt == oldestPendingTask ? "red" : "black")};">
       <span onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">${filteredTasks[i].text}</span>
       <button class="edit-btn" style = "background-color:${originalIndex == editingIndex ? "orange" : "none"};" onclick="editTask(${originalIndex})">Edit</button>
       <button style = "
@@ -152,4 +168,23 @@ function updateSearch() {
 function updateSort() {
   currentSort = document.getElementById("sortSelect").value;
   renderTasks();
+}
+
+function updateStats() {
+  const total = tasks.length;
+  const completed = tasks.filter(task => task.completed).length;
+  const pending = total - completed;
+  const completionPercentage = total === 0 ? 0 : Math.round((completed / total) * 100);
+  document.getElementById("totalTasks").innerText = `Total Tasks: ${total}`;
+  document.getElementById("completedTasks").innerText = `Completed: ${completed}`;
+  document.getElementById("pendingTasks").innerText = `Pending: ${pending}`;
+  document.getElementById("completionRate").innerText = `Completion Rate: ${completionPercentage}%`;
+
+  if(completionPercentage <= 30) {
+    document.getElementById("completionRate").style.color = "red";
+  } else if (completionPercentage <= 70) {
+    document.getElementById("completionRate").style.color = "orange";
+  } else {
+    document.getElementById("completionRate").style.color = "green";
+  }
 }
