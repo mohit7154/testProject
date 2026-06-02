@@ -86,6 +86,20 @@ p {
   transition: transform .2s;
 }
 
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.task-text {
+  display: inline-block;
+  max-width: 300px;
+  overflow-wrap: break-word;
+}
+
 .app-button:hover {
 
   transform:

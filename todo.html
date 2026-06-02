@@ -8,7 +8,7 @@
 
 <body>
 
-  <button onclick="location.href='index.html'">
+  <button style="margin-top: 18px;" onclick="location.href='index.html'">
     Home
   </button>
 
@@ -27,7 +27,7 @@
     <button onclick="setFilter('completed')">Completed</button>
     <button onclick="setFilter('pending')">Pending</button>
   </div>
-  
+
   <div style="margin-top:20px;">
     <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
     <select id="sortSelect" onchange="updateSort()">
@@ -37,15 +37,19 @@
       <option value="pending">Earliest Pending</option>
     </select>
   </div>
-  <ul id="taskList"></ul>
-  <div id="statsContainer">
-    <p id="totalTasks"></p>
-    <p id="completedTasks"></p>
-    <p id="pendingTasks"></p>
-    <p id="completionRate"></p>
+  <div class="content-container">
+    <div class="tasks-section">
+      <ul id="taskList"></ul>
+    </div>
+    <div id="statsContainer" style="text-align: right;">
+      <p id="totalTasks"></p>
+      <p id="completedTasks"></p>
+      <p id="pendingTasks"></p>
+      <p id="completionRate"></p>
+    </div>
   </div>
-
   <script src="todoScript.js"></script>
 
 </body>
+
 </html>
