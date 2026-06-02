@@ -2,54 +2,39 @@
 <html>
 
 <head>
-  <title>My First Project</title>
+  <title>My Projects</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <h1>Hello, I started.</h1>
-  <p id="message">
-    This is Day 5 of my consistency streak.
-  </p>
-  <input type="text" id="nameInput" placeholder="Enter your name" />
-  <p></p> 
-  <div>
-    <button id="myButton" onclick="changeText()">
-      Click Me
-    </button>
-  </div>
-  <div style="margin-top: 30px;">
-    <input type="text" id="taskInput" placeholder="Enter a task" />
-    <button style="
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 8px 10px;
-    border-radius: 999px;
-    cursor: pointer;" onclick="addTask()">+</button>
-  </div>
-  <div style="margin-top:20px;">
-    <button onclick="setFilter('all')">All</button>
-    <button onclick="setFilter('completed')">Completed</button>
-    <button onclick="setFilter('pending')">Pending</button>
-  </div>
-  <div id="statsContainer">
-    <p id="totalTasks"></p>
-    <p id="completedTasks"></p>
-    <p id="pendingTasks"></p>
-    <p id="completionRate"></p>
-  </div>
-  <div style="margin-top:20px;">
-    <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
-    <select id="sortSelect" onchange="updateSort()">
-      <option value="newest">Newest First</option>
-      <option value="oldest">Oldest First</option>
-      <option value="completed">Completed First</option>
-      <option value="pending">Earliest Pending</option>
-    </select>
-  </div>
-  <ul id="taskList"></ul>
-  <script src="script.js"></script>
-</body>
 
-</html>
+  <div class="hero">
+
+    <h1>My Projects</h1>
+
+    <p>
+      A collection of apps built while learning
+      web development.
+    </p>
+
+    <div class="app-container">
+
+      <a href="todo.html" class="app-button">
+        <span class="app-title">Todo App</span>
+        <span class="app-subtitle">
+          Tasks, search and statistics
+        </span>
+      </a>
+
+      <a href="clickme.html" class="app-button">
+        <span class="app-title">Click Me</span>
+        <span class="app-subtitle">
+          Colors, animations and fun
+        </span>
+      </a>
+
+    </div>
+
+  </div>
+
+</body>

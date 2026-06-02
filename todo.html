@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Todo App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <button onclick="location.href='index.html'">
+    Home
+  </button>
+
+  <div style="margin-top: 30px;">
+    <input type="text" id="taskInput" placeholder="Enter a task" />
+    <button style="
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 999px;
+    cursor: pointer;" onclick="addTask()">+</button>
+  </div>
+  <div style="margin-top:20px;">
+    <button onclick="setFilter('all')">All</button>
+    <button onclick="setFilter('completed')">Completed</button>
+    <button onclick="setFilter('pending')">Pending</button>
+  </div>
+  
+  <div style="margin-top:20px;">
+    <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
+    <select id="sortSelect" onchange="updateSort()">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="completed">Completed First</option>
+      <option value="pending">Earliest Pending</option>
+    </select>
+  </div>
+  <ul id="taskList"></ul>
+  <div id="statsContainer">
+    <p id="totalTasks"></p>
+    <p id="completedTasks"></p>
+    <p id="pendingTasks"></p>
+    <p id="completionRate"></p>
+  </div>
+
+  <script src="todoScript.js"></script>
+
+</body>
+</html>
