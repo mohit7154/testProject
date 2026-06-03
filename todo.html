@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
   <title>Todo App</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -13,39 +14,34 @@
   </button>
 
   <div style="margin-top: 30px;">
-    <input type="text" id="taskInput" placeholder="Enter a task" />
-    <button style="
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 8px 10px;
-    border-radius: 999px;
-    cursor: pointer;" onclick="addTask()">+</button>
+    <input class = "add-task" style = "background-color: white; color: black;" type="text" id="taskInput" placeholder="Enter a task" />
+    <button class = "add-task" onclick="addTask()">+</button>
   </div>
   <div style="margin-top:20px;">
-    <button onclick="setFilter('all')">All</button>
-    <button onclick="setFilter('completed')">Completed</button>
-    <button onclick="setFilter('pending')">Pending</button>
+    <button class = "main-filter-button" onclick="setFilter('all')">All</button>
+    <button class = "main-filter-button" onclick="setFilter('completed')">Completed</button>
+    <button class = "main-filter-button" onclick="setFilter('pending')">Pending</button>
   </div>
 
-  <div style="margin-top:20px;">
-    <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
-    <select id="sortSelect" onchange="updateSort()">
+  <div class="filter-container">
+    <select class="dropdown-box" id="sortSelect" onchange="updateSort()">
       <option value="newest">Newest First</option>
       <option value="oldest">Oldest First</option>
-      <option value="completed">Completed First</option>
-      <option value="pending">Earliest Pending</option>
     </select>
+    <input type="text" id="searchInput" placeholder="Search tasks..." oninput="updateSearch()" />
   </div>
   <div class="content-container">
-    <div class="tasks-section">
-      <ul id="taskList"></ul>
+    <div class="task-header">
+      <span>Task</span>
+      <span>Status</span>
+      <span style = "padding-left: 50px;">Actions</span>
     </div>
-    <div id="statsContainer" style="text-align: right;">
-      <p id="totalTasks"></p>
-      <p id="completedTasks"></p>
-      <p id="pendingTasks"></p>
-      <p id="completionRate"></p>
+    <div id="taskList"></div>
+    <div id="statsContainer" class="stats-container">
+      <span class="stat" id="totalTasks"></span>
+      <span class="stat" id="completedTasks"></span>
+      <span class="stat" id="pendingTasks"></span>
+      <span class="stat" id="completionRate"></span>
     </div>
   </div>
   <script src="todoScript.js"></script>

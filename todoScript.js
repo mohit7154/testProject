@@ -30,7 +30,7 @@ function addTask() {
 function renderTasks() {
 
   updateStats();
-  
+
   var oldestPendingTask = Number.POSITIVE_INFINITY;
   var newestCompletedTask = Number.NEGATIVE_INFINITY;
   const taskList = document.getElementById("taskList");
@@ -45,61 +45,48 @@ function renderTasks() {
 
   filteredTasks = filteredTasks.filter(task => task.text.toLowerCase().includes(searchText));
 
-  if (filteredTasks.length == 0) {
-    taskList.innerHTML = "No tasks found.";
-    return;
-  }
-
   if (currentSort === "newest") {
     filteredTasks.sort((a, b) => b.createdAt - a.createdAt);
-  }else if(currentSort === "oldest"){
-    filteredTasks.sort((a, b) => a.createdAt - b.createdAt);
-  }else if(currentSort === "completed"){
-    filteredTasks = filteredTasks.filter(task => task.completed);
-    filteredTasks.sort((a, b) => a.completedAt - b.completedAt);
-  }else{
-    filteredTasks = filteredTasks.filter(task => !task.completed);
+  } else{
     filteredTasks.sort((a, b) => a.createdAt - b.createdAt);
   }
 
   if (filteredTasks.length == 0) {
-    taskList.innerHTML = "No tasks found.";
+    taskList.innerHTML = `<div class = "no-tasks">No tasks found.</div>`;
     return;
   }
 
-  for(let i = 0; i < filteredTasks.length; i++)
-    if(filteredTasks[i].completed && filteredTasks[i].completedAt > newestCompletedTask)
-        newestCompletedTask = filteredTasks[i].completedAt;
-    else if(filteredTasks[i].createdAt < oldestPendingTask) 
-        oldestPendingTask = filteredTasks[i].createdAt;
+  for (let i = 0; i < filteredTasks.length; i++)
+    if (filteredTasks[i].completed && filteredTasks[i].completedAt > newestCompletedTask)
+      newestCompletedTask = filteredTasks[i].completedAt;
+    else if (filteredTasks[i].createdAt < oldestPendingTask)
+      oldestPendingTask = filteredTasks[i].createdAt;
   console.log(newestCompletedTask, oldestPendingTask);
 
 
   for (let i = 0; i < filteredTasks.length; i++) {
-    var originalIndex = tasks.indexOf(filteredTasks[i]);
-    taskList.innerHTML +=
-      `<li style = "
-      text-decoration:
-        ${filteredTasks[i].completed ? "line-through" : "none"};
-      opacity:
-        ${filteredTasks[i].completed ? "0.5" : "1"};
-      color:
-        ${filteredTasks[i].completedAt == newestCompletedTask ? "green" :
-         (filteredTasks[i].createdAt == oldestPendingTask ? "red" : "grey")};
-      max-width: 300px;
-      overflow-wrap: break-word;">
-      <span onclick="toggleTask(${originalIndex})" style = "cursor:pointer;">${filteredTasks[i].text}</span>
-      <button class="edit-btn" style = "background-color:${originalIndex == editingIndex ? "orange" : "none"};" onclick="editTask(${originalIndex})">Edit</button>
-      <button style = "
-        background-color: crimson;
-        color: white;
-        border: none;
-        padding: 4px 8px;
-        font-size: 12px;
-        border-radius: 999px;
-        cursor: pointer;"
-        onclick="deleteTask(${originalIndex})">x</button>
-      </li>`;
+    let originalIndex = tasks.indexOf(filteredTasks[i]);
+    taskList.innerHTML += 
+    `<div class="task-row">
+        <div class="task-name">
+          ${filteredTasks[i].text}
+        </div>
+        <div class="task-status">
+          <span class="status-indicator" onclick="toggleTask(${originalIndex})">
+            ${filteredTasks[i].completed ? "Done" : "Pending"}
+          </span>
+        </div>
+        <div class="task-actions">
+          <button class = "stat"
+            onclick="editTask(${originalIndex})">
+            Edit
+          </button>
+          <button class="stat"
+            onclick="deleteTask(${originalIndex})">
+            X
+          </button>
+        </div>
+      </div>`;
   }
 }
 
@@ -154,7 +141,7 @@ function updateStats() {
   document.getElementById("pendingTasks").innerText = `Pending: ${pending}`;
   document.getElementById("completionRate").innerText = `Completion Rate: ${completionPercentage}%`;
 
-  if(completionPercentage <= 30) {
+  if (completionPercentage <= 30) {
     document.getElementById("completionRate").style.color = "red";
   } else if (completionPercentage <= 70) {
     document.getElementById("completionRate").style.color = "orange";
