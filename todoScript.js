@@ -6,11 +6,17 @@ var searchText = "";
 var currentSort = "newest";
 const filterButtons = document.querySelectorAll(".main-filter-button");
 filterButtons.forEach(button => {
-  button.onmouseover = function () {
-    button.style.transform = "translateY(5px)";
-  }
-  button.onmouseout = function () {
-    button.style.transform = "translateY(0px)";
+  if (button.id != 'allFilter') {
+    button.onmouseover = function () {
+      button.style.transform = "translateY(5px)";
+    }
+    button.onmouseout = function () {
+      button.style.transform = "translateY(0px)";
+    }
+  } else {
+    button.onmouseout = null;
+    button.onmouseover = null;
+    button.style.transform = "translateY(15px)";
   }
 });
 renderTasks();
@@ -75,7 +81,7 @@ function renderTasks() {
         </div>
         <div class="task-status">
           <span class="status-indicator" onclick="toggleTask(${originalIndex})" 
-          style = "background-color: ${filteredTasks[i].completed ? "#27633ae5" : "#c50202e5"};"></span>
+          style = "border: 1px solid rgba(255, 255, 255, 0.76); background-color: ${filteredTasks[i].completed ? "#27633ae5" : "rgba(255, 0, 0, 0.7)"};"></span>
         </div>
         <div class="task-actions">
           <button class = "stat"
@@ -105,7 +111,7 @@ function setFilter(filter) {
       }
 
       button.style.transform = "translateY(0px)";
-    }else{
+    } else {
       button.onmouseout = null;
       button.onmouseover = null;
       button.style.transform = "translateY(15px)";
@@ -162,11 +168,11 @@ function updateStats() {
   document.getElementById("completionRate").innerText = `Completion Rate: ${completionPercentage}%`;
 
   if (completionPercentage == 0) {
-    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f0808e5 100%`;
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, rgba(255, 0, 0, 0.7) 100%`;
   } else if (completionPercentage <= 30) {
-    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f0808e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, rgba(255, 0, 0, 0.7)  ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
   } else if (completionPercentage <= 70) {
-    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f5708e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, rgba(253, 59, 0, 0.6)  ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
   } else {
     document.getElementById("statsContainer").style.background = `linear-gradient(to right, #1d4329e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
   }
