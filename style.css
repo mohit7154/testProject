@@ -219,11 +219,6 @@ input {
   transition: 0.2s;
 }
 
-.main-filter-button:hover {
-  transform:
-    translateY(5px);
-}
-
 .status-indicator {
   display: inline-block;
   width: 20px;

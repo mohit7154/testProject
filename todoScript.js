@@ -4,6 +4,15 @@ var isEditing = false;
 var editingIndex = null;
 var searchText = "";
 var currentSort = "newest";
+const filterButtons = document.querySelectorAll(".main-filter-button");
+filterButtons.forEach(button => {
+  button.onmouseover = function () {
+    button.style.transform = "translateY(5px)";
+  }
+  button.onmouseout = function () {
+    button.style.transform = "translateY(0px)";
+  }
+});
 renderTasks();
 
 function addTask() {
@@ -36,9 +45,10 @@ function renderTasks() {
   taskList.innerHTML = "";
 
   var filteredTasks = tasks;
-  if (currentFilter === "completed") {
+
+  if (currentFilter === "completedFilter") {
     filteredTasks = tasks.filter(task => task.completed);
-  } else if (currentFilter === "pending") {
+  } else if (currentFilter === "pendingFilter") {
     filteredTasks = tasks.filter(task => !task.completed);
   }
 
@@ -46,7 +56,7 @@ function renderTasks() {
 
   if (currentSort === "newest") {
     filteredTasks.sort((a, b) => b.createdAt - a.createdAt);
-  } else{
+  } else {
     filteredTasks.sort((a, b) => a.createdAt - b.createdAt);
   }
 
@@ -58,8 +68,8 @@ function renderTasks() {
 
   for (let i = 0; i < filteredTasks.length; i++) {
     let originalIndex = tasks.indexOf(filteredTasks[i]);
-    taskList.innerHTML += 
-    `<div class="task-row">
+    taskList.innerHTML +=
+      `<div class="task-row">
         <div class="task-name">
           ${filteredTasks[i].text}
         </div>
@@ -83,6 +93,25 @@ function renderTasks() {
 
 function setFilter(filter) {
   currentFilter = filter;
+  filterButtons.forEach(button => {
+    if (button.id != filter) {
+
+      button.onmouseover = function () {
+        button.style.transform = "translateY(5px)";
+      }
+
+      button.onmouseout = function () {
+        button.style.transform = "translateY(0px)";
+      }
+
+      button.style.transform = "translateY(0px)";
+    }else{
+      button.onmouseout = null;
+      button.onmouseover = null;
+      button.style.transform = "translateY(15px)";
+    }
+  });
+
   renderTasks();
 }
 
@@ -135,10 +164,10 @@ function updateStats() {
   if (completionPercentage == 0) {
     document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f0808e5 100%`;
   } else if (completionPercentage <= 30) {
-    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f0808e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage+4}%)`;
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f0808e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
   } else if (completionPercentage <= 70) {
-    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f5708e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage+4}%)`;
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f5708e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
   } else {
-    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #1d4329e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage+4}%)`;
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #1d4329e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
   }
 }

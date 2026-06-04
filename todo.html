@@ -18,9 +18,9 @@
     <button class = "add-task" onclick="addTask()">+</button>
   </div>
   <div style="margin-top:20px;">
-    <button class = "main-filter-button" onclick="setFilter('all')">All</button>
-    <button class = "main-filter-button" onclick="setFilter('completed')">Completed</button>
-    <button class = "main-filter-button" onclick="setFilter('pending')">Pending</button>
+    <button id="allFilter" class = "main-filter-button" onclick="setFilter('allFilter')">All</button>
+    <button id="completedFilter" class = "main-filter-button" onclick="setFilter('completedFilter')">Completed</button>
+    <button id="pendingFilter" class = "main-filter-button" onclick="setFilter('pendingFilter')">Pending</button>
   </div>
 
   <div class="filter-container">
