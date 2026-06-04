@@ -124,6 +124,7 @@ p {
   margin: 12px;
   padding: 16px 20px;
   border-radius: 999px;
+  visibility: hidden;
   background:
     rgba(255,255,255,0.08);
   backdrop-filter:
@@ -221,6 +222,14 @@ input {
 .main-filter-button:hover {
   transform:
     translateY(5px);
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 .add-task{

@@ -30,9 +30,8 @@ function addTask() {
 function renderTasks() {
 
   updateStats();
+  document.getElementById("statsContainer").style.visibility = "visible";
 
-  var oldestPendingTask = Number.POSITIVE_INFINITY;
-  var newestCompletedTask = Number.NEGATIVE_INFINITY;
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
 
@@ -56,13 +55,6 @@ function renderTasks() {
     return;
   }
 
-  for (let i = 0; i < filteredTasks.length; i++)
-    if (filteredTasks[i].completed && filteredTasks[i].completedAt > newestCompletedTask)
-      newestCompletedTask = filteredTasks[i].completedAt;
-    else if (filteredTasks[i].createdAt < oldestPendingTask)
-      oldestPendingTask = filteredTasks[i].createdAt;
-  console.log(newestCompletedTask, oldestPendingTask);
-
 
   for (let i = 0; i < filteredTasks.length; i++) {
     let originalIndex = tasks.indexOf(filteredTasks[i]);
@@ -72,9 +64,8 @@ function renderTasks() {
           ${filteredTasks[i].text}
         </div>
         <div class="task-status">
-          <span class="status-indicator" onclick="toggleTask(${originalIndex})">
-            ${filteredTasks[i].completed ? "Done" : "Pending"}
-          </span>
+          <span class="status-indicator" onclick="toggleTask(${originalIndex})" 
+          style = "background-color: ${filteredTasks[i].completed ? "#27633ae5" : "#c50202e5"};"></span>
         </div>
         <div class="task-actions">
           <button class = "stat"
@@ -141,11 +132,13 @@ function updateStats() {
   document.getElementById("pendingTasks").innerText = `Pending: ${pending}`;
   document.getElementById("completionRate").innerText = `Completion Rate: ${completionPercentage}%`;
 
-  if (completionPercentage <= 30) {
-    document.getElementById("completionRate").style.color = "red";
+  if (completionPercentage == 0) {
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f0808e5 100%`;
+  } else if (completionPercentage <= 30) {
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f0808e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage+4}%)`;
   } else if (completionPercentage <= 70) {
-    document.getElementById("completionRate").style.color = "orange";
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #8f5708e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage+4}%)`;
   } else {
-    document.getElementById("completionRate").style.color = "green";
+    document.getElementById("statsContainer").style.background = `linear-gradient(to right, #1d4329e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage+4}%)`;
   }
 }
