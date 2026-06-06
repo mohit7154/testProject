@@ -84,13 +84,13 @@ function renderTasks() {
           style = "border: 1px solid rgba(255, 255, 255, 0.76); background-color: ${filteredTasks[i].completed ? "#27633ae5" : "rgba(255, 0, 0, 0.7)"};"></span>
         </div>
         <div class="task-actions">
-          <button class = "stat"
+          <button class = "action-button"
             onclick="editTask(${originalIndex})">
-            Edit
+            <span class="action-button-text" ${originalIndex == editingIndex ? 'style = "background:#2b3a54;transform: translateY(-2px);"' : ""}>Edit</span>
           </button>
-          <button class="stat"
+          <button class="action-button"
             onclick="deleteTask(${originalIndex})">
-            X
+            <span class="action-button-text">X</span>
           </button>
         </div>
       </div>`;
@@ -122,6 +122,11 @@ function setFilter(filter) {
 }
 
 function deleteTask(index) {
+
+  editingIndex = null;
+  isEditing = false;
+  const taskInput = document.getElementById("taskInput");
+  taskInput.value = '';
   tasks.splice(index, 1);
   saveTasks();
   renderTasks();

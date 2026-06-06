@@ -27,7 +27,7 @@ h1 {
 }
 
 p {
-  color: #666;
+  color: #8b8989;
   font-size: 18px;
 }
 
@@ -111,11 +111,6 @@ p {
     transform 0.2s;
 }
 
-.task-row:hover {
-  transform:
-    translateY(-2px);
-}
-
 .stats-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -126,7 +121,7 @@ p {
   border-radius: 999px;
   visibility: hidden;
   background:
-    rgba(255,255,255,0.08);
+    rgba(255, 255, 255, 0.08);
   backdrop-filter:
     blur(20px);
   transition:
@@ -135,19 +130,69 @@ p {
 
 
 
-.stat{
+.stat {
   font-weight: bold;
   padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.6);
   border-radius: 999px;
   background:
-    rgba(255,255,255,0.08);
+    rgba(255, 255, 255, 0.08);
   backdrop-filter:
     blur(20px);
   border:
-    1px solid rgba(255,255,255,0.08);
+    1px solid rgba(255, 255, 255, 0.08);
   transition:
     transform 0.2s;
 }
+
+.stat:hover {
+  transform:
+    scale(1.1);
+}
+
+.action-button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background:
+    #182950;
+  backdrop-filter:
+    blur(20px);
+  transition:
+    transform 0.2s;
+}
+
+.action-button:active .action-button-text {
+  transform: scale(0.95) translateY(-3px);
+}
+
+.action-button-text {
+  /*padding: 16px 20px;
+  transform: translateY(-6px);*/
+  transform: translateY(-5px);
+  display: block;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 999px;
+  background:
+    #384c6e;
+  backdrop-filter:
+    blur(20px);
+  transition:
+    transform 0.2s;
+}
+
+.action-button-text:hover {
+  background:
+    #2b3a54;
+}
+
 
 .app-button:hover {
 
@@ -161,7 +206,7 @@ p {
   border-radius: 999px;
   border: none;
   appearance: none;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .task-actions {
@@ -189,10 +234,11 @@ p {
 }
 
 .filter-container {
-  margin: 12px;
+  margin: 15px;
   display: flex;
   gap: 12px;
-  padding: 12px 20px;
+  
+  align-items:right;
   border-radius: 999px;
   margin-bottom: 20px;
 }
@@ -207,7 +253,8 @@ input {
   appearance: none;
 }
 
-.main-filter-button{
+
+.main-filter-button {
   padding: 10px 20px;
   font-size: 23px;
   font-weight: bold;
@@ -227,7 +274,7 @@ input {
   cursor: pointer;
 }
 
-.add-task{
+.add-task {
   padding: 10px 20px;
   font-size: 30px;
   font-weight: bold;
