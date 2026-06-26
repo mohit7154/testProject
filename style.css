@@ -94,7 +94,7 @@ p {
   color: rgb(231, 217, 217);
   display: grid;
   grid-template-columns:
-    4fr 2fr 1fr;
+    minmax(0, 4fr) 2fr 1fr;
   align-items: center;
   text-align: center;
   gap: 20px;
@@ -147,7 +147,7 @@ p {
 
 .stat:hover {
   transform:
-    scale(1.1);
+    scale(1.05ff);
 }
 
 .action-button {
