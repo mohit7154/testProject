@@ -30,13 +30,7 @@ function addTask() {
     return;
   }
 
-  if (isEditing) {
-    tasks[editingIndex].text = task;
-    isEditing = false;
-    editingIndex = null;
-  } else {
-    tasks.push({ text: task, completed: false, createdAt: Date.now(), completedAt: null });
-  }
+  tasks.push({ text: task, completed: false, createdAt: Date.now(), completedAt: null });
   saveTasks();
   renderTasks();
   taskInput.value = "";
@@ -50,8 +44,18 @@ function renderTasks() {
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
 
-  var filteredTasks = tasks;
+  var filteredTasks = getFilteredTasks();
 
+  if (filteredTasks.length == 0) {
+    taskList.innerHTML = `<div class = "no-tasks">No tasks found.</div>`;
+    return;
+  }
+
+  renderTaskRows(taskList, filteredTasks);
+}
+
+function getFilteredTasks() {
+  let filteredTasks = tasks;
   if (currentFilter === "completedFilter") {
     filteredTasks = tasks.filter(task => task.completed);
   } else if (currentFilter === "pendingFilter") {
@@ -65,35 +69,90 @@ function renderTasks() {
   } else {
     filteredTasks.sort((a, b) => a.createdAt - b.createdAt);
   }
+  return filteredTasks;
+}
 
-  if (filteredTasks.length == 0) {
-    taskList.innerHTML = `<div class = "no-tasks">No tasks found.</div>`;
-    return;
-  }
+function renderTaskRows(taskList, filteredTasks) {
+  for (const taskRow of filteredTasks) {
+    const originalIndex = tasks.indexOf(taskRow);
+    const row = document.createElement("div");
+    row.className = "task-row";
 
+    // ---------------- Task Name ----------------
 
-  for (let i = 0; i < filteredTasks.length; i++) {
-    let originalIndex = tasks.indexOf(filteredTasks[i]);
-    taskList.innerHTML +=
-      `<div class="task-row">
-        <div class="task-name">
-          ${filteredTasks[i].text}
-        </div>
-        <div class="task-status">
-          <span class="status-indicator" onclick="toggleTask(${originalIndex})" 
-          style = "border: 1px solid rgba(255, 255, 255, 0.76); background-color: ${filteredTasks[i].completed ? "#27633ae5" : "rgba(255, 0, 0, 0.7)"};"></span>
-        </div>
-        <div class="task-actions">
-          <button class = "action-button"
-            onclick="editTask(${originalIndex})">
-            <span class="action-button-text" ${originalIndex == editingIndex ? 'style = "background:#2b3a54;transform: translateY(-2px);"' : ""}>Edit</span>
-          </button>
-          <button class="action-button"
-            onclick="deleteTask(${originalIndex})">
-            <span class="action-button-text">X</span>
-          </button>
-        </div>
-      </div>`;
+    
+    const taskName = document.createElement("div");
+    taskName.textContent = taskRow.text;
+    if (originalIndex === editingIndex) {
+      taskName.contentEditable = true;
+      taskName.className = "task-edit-input";
+    }
+    row.appendChild(taskName);
+
+    // ---------------- Status ----------------
+
+    const taskStatus = document.createElement("div");
+    taskStatus.className = "task-status";
+
+    const statusIndicator = document.createElement("span");
+    statusIndicator.className = "status-indicator";
+
+    statusIndicator.style.border = "1px solid rgba(255,255,255,0.76)";
+
+    statusIndicator.style.backgroundColor = taskRow.completed ? "#27633ae5" : "rgba(255,0,0,0.7)";
+
+    statusIndicator.addEventListener("click", () => {
+      toggleTask(originalIndex);
+    });
+
+    taskStatus.appendChild(statusIndicator);
+    row.appendChild(taskStatus);
+
+    // ---------------- Actions ----------------
+
+    const taskActions = document.createElement("div");
+    taskActions.className = "task-actions";
+
+    // Edit Button
+
+    const editButton = document.createElement("button");
+    editButton.className = "action-button";
+
+    const editText = document.createElement("span");
+    editText.className = "action-button-text";
+    editText.textContent = "Edit";
+
+    if (originalIndex === editingIndex) {
+      editText.style.background = "#2b3a54";
+      editText.textContent = "Done";
+    }
+
+    editButton.appendChild(editText);
+
+    editButton.addEventListener("click", () => {
+      editTask(originalIndex);
+    });
+
+    // Delete Button
+
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "action-button";
+
+    const deleteText = document.createElement("span");
+    deleteText.className = "action-button-text";
+    deleteText.textContent = "X";
+
+    deleteButton.appendChild(deleteText);
+
+    deleteButton.addEventListener("click", () => {
+      deleteTask(originalIndex);
+    });
+
+    taskActions.appendChild(editButton);
+    taskActions.appendChild(deleteButton);
+
+    row.appendChild(taskActions);
+    taskList.appendChild(row);
   }
 }
 
@@ -140,11 +199,22 @@ function toggleTask(index) {
 }
 
 function editTask(index) {
-  const taskInput = document.getElementById("taskInput");
-  taskInput.value = tasks[index].text;
+  if(isEditing && editingIndex === index) {
+    const taskEdit = document.querySelector(".task-edit-input");
+    const task = taskEdit.textContent.trim();
+    if (task === "") {
+      return;
+    }
+    tasks[editingIndex].text = task;
+
+    isEditing = false;
+    editingIndex = null;
+    saveTasks();
+    renderTasks();
+    return;
+  }
   isEditing = true;
   editingIndex = index;
-  saveTasks();
   renderTasks();
 }
 

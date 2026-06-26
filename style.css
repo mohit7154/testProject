@@ -111,6 +111,21 @@ p {
     transform 0.2s;
 }
 
+.task-edit-input {
+  color: rgb(231, 217, 217);
+  display: grid;
+  gap: 20px;
+  margin: 12px;
+  padding: 16px 20px;
+  border-radius: 999px;
+  background:
+    rgba(255, 255, 255, 0.08);
+  backdrop-filter:
+    blur(20px);
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
 .stats-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
