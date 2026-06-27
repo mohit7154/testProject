@@ -115,6 +115,7 @@ p {
   pointer-events: none;
   display: inline-block;
   font-size: medium;
+  color: rgba(255, 255, 255, 0.6);
   overflow-wrap: break-word;
   padding: 10px;
   margin: 10px;
