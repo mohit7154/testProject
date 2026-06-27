@@ -17,19 +17,19 @@
     <input class = "add-task" style = "background-color: white; color: black;" type="text" id="taskInput" placeholder="Enter a task" />
     <button class = "add-task" onclick="addTask()">+</button>
   </div>
-  <div style="margin-top:20px;">
-    <button id="allFilter" class = "main-filter-button" onclick="setFilter('allFilter')">All</button>
-    <button id="completedFilter" class = "main-filter-button" onclick="setFilter('completedFilter')">Completed</button>
-    <button id="pendingFilter" class = "main-filter-button" onclick="setFilter('pendingFilter')">Pending</button>
-  </div>
-
-  <div class="filter-container">
+  <div class = "filter-container">
     <select class="dropdown-box" id="sortSelect" onchange="updateSort()">
       <option value="newest">Newest First</option>
       <option value="oldest">Oldest First</option>
     </select>
-    <input type="text" id="searchInput" style = "padding:10px;background: rgba(255, 255, 255, 0.8);" placeholder="Search tasks..." oninput="updateSearch()" />
+    <input type="text" id="searchInput" style = "color: black;background:linear-gradient(135deg,#a8adb8,#616e85,#7ca3d8);padding:10px;" placeholder="Search tasks..." oninput="updateSearch()" />
+    <span></span>
+    <button id="allFilter" class = "main-filter-button" onclick="setFilter('allFilter')">All</button>
+    <button id="completedFilter" class = "main-filter-button" onclick="setFilter('completedFilter')">Completed</button>
+    <button id="pendingFilter" class = "main-filter-button" onclick="setFilter('pendingFilter')">Pending</button>
+    <span></span>
   </div>
+
   <div class="content-container">
     <div class="task-header">
       <span>Task</span>
