@@ -79,6 +79,7 @@ p {
 
 .task-header {
   display: grid;
+  font-size: larger;
   gap: 10px;
   grid-template-columns:
     5fr 1fr 1fr;
