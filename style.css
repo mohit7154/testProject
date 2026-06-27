@@ -114,7 +114,6 @@ p {
 .task-name{
   pointer-events: none;
   display: inline-block;
-  text-align: center;
   font-size: medium;
   overflow-wrap: break-word;
   padding: 10px;
@@ -125,7 +124,6 @@ p {
 
 .task-edit-input {
   font-size: medium;
-  text-align: center;
   background:
     linear-gradient(135deg,
       #a8adb8,
