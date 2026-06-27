@@ -231,13 +231,14 @@ p {
 }
 
 .dropdown-box {
+  margin-top:10px;
+  margin-bottom:10px;
   padding: 10px;
   font-size: 10px;
   border-radius: 999px;
   color: black;
   border: none;
   appearance: none;
-  background: rgba(255, 255, 255, 0.8);
   background:
     linear-gradient(135deg,
       #a8adb8,
