@@ -81,10 +81,12 @@ function renderTaskRows(taskList, filteredTasks) {
     // ---------------- Task Name ----------------
 
     
-    const taskName = document.createElement("div");
-    taskName.textContent = taskRow.text;
+    const taskName = document.createElement("input");
+    taskName.value = taskRow.text;
+    taskName.readOnly = true;
+    taskName.className = "task-name";
     if (originalIndex === editingIndex) {
-      taskName.contentEditable = true;
+      taskName.readOnly = false;
       taskName.className = "task-edit-input";
     }
     row.appendChild(taskName);
@@ -153,6 +155,9 @@ function renderTaskRows(taskList, filteredTasks) {
 
     row.appendChild(taskActions);
     taskList.appendChild(row);
+    if (originalIndex === editingIndex) {
+      taskName.focus();
+    }
   }
 }
 
@@ -201,7 +206,7 @@ function toggleTask(index) {
 function editTask(index) {
   if(isEditing && editingIndex === index) {
     const taskEdit = document.querySelector(".task-edit-input");
-    const task = taskEdit.textContent.trim();
+    const task = taskEdit.value.trim();
     if (task === "") {
       return;
     }
@@ -242,13 +247,13 @@ function updateStats() {
   document.getElementById("pendingTasks").innerText = `Pending: ${pending}`;
   document.getElementById("completionRate").innerText = `Completion Rate: ${completionPercentage}%`;
 
-  if (completionPercentage == 0) {
+  if (completionPercentage == 0 && total != 0) {
     document.getElementById("statsContainer").style.background = `linear-gradient(to right, rgba(255, 0, 0, 0.7) 100%`;
-  } else if (completionPercentage <= 30) {
+  } else if (completionPercentage <= 30 && total != 0) {
     document.getElementById("statsContainer").style.background = `linear-gradient(to right, rgba(255, 0, 0, 0.7)  ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
-  } else if (completionPercentage <= 70) {
+  } else if (completionPercentage <= 70 && total != 0) {
     document.getElementById("statsContainer").style.background = `linear-gradient(to right, rgba(253, 59, 0, 0.6)  ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
-  } else {
+  } else if(total != 0){
     document.getElementById("statsContainer").style.background = `linear-gradient(to right, #1d4329e5 ${completionPercentage}%, rgba(255,255,255,0.08) ${completionPercentage + 4}%)`;
   }
 }
