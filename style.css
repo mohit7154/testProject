@@ -117,7 +117,7 @@ p {
   font-size: medium;
   overflow-wrap: break-word;
   padding: 10px;
-  margin: 5px;
+  margin: 10px;
   border-radius: 999px;
   background: none;
 }
@@ -132,7 +132,7 @@ p {
   display: block;
   overflow-wrap: break-word;
   padding: 10px;
-  margin: 5px;
+  margin: 10px;
   border-radius: 999px;
   backdrop-filter:
     blur(20px);
@@ -158,8 +158,6 @@ p {
   transition:
     transform 0.2s;
 }
-
-
 
 .stat {
   font-weight: bold;
@@ -227,7 +225,6 @@ p {
 
 
 .app-button:hover {
-
   transform:
     translateY(-3px) scale(1.02);
 }
@@ -244,7 +241,7 @@ p {
 .task-actions {
   display: flex;
   gap: 10px;
-  margin: 10px;
+  margin: 15px;
   justify-content: center;
 }
 
